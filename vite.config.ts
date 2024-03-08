@@ -41,6 +41,7 @@ function packageEnv(mode: string, root: string): ViteEnv {
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const root = process.cwd()
+  console.log('nmsl config')
   const isBuild = command === 'build'
 
   const env = packageEnv(mode, root)

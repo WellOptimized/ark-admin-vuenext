@@ -10,7 +10,7 @@
     <main class="max-w-[800px] m-auto pt-12 pb-6">
       <div class="relative w-[380px] rounded-lg mt-20 mx-auto p-10 box-border">
         <div class="pb-7 pt-2 text-center text-2xl font-semibold text-black dark:text-gray-400">
-          {{ t('common.login.signin') }}
+          {{ t('common.login.czh') }}
         </div>
         <AccountLoginForm />
       </div>

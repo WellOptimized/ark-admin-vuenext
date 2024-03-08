@@ -1,6 +1,6 @@
 import { defHttp } from '/@/utils/http/axios'
 import type { Menu } from '/@/router/typing'
-
+// 默认前缀是'/api/admin'
 const Api = {
   login: '/user/login',
   captcha: '/user/login/captcha',
@@ -22,8 +22,20 @@ interface CaptchaImgResult {
   captchaId: string
 }
 export function getImageCaptcha(params?: CaptchaImgParams) {
-  return defHttp.get<CaptchaImgResult>({ url: Api.captcha, params }, { errorMessageMode: 'none' })
+  // console.log('我正在测试验证码请求接口111')
+  return defHttp.get<CaptchaImgResult>({ url: Api.captcha, params },{ errorMessageMode: 'message' })
 }
+
+// export async function getImageCaptcha(params?: CaptchaImgParams) {
+//   try {
+//     const response = await defHttp.get<CaptchaImgResult>({ url: Api.captcha, params });
+//     return response;
+//   } catch (error) {
+//     console.error('Error fetching image captcha:', error);
+//     throw error; // re-throw the error if you want it to propagate
+//   }
+// }
+
 
 interface UserLoginParams {
   account: string

@@ -36,12 +36,14 @@ const transform: AxiosTransform = {
     if (!data) {
       throw new Error('response data empty')
     }
-
-    const { data: result, msg: message, code } = data
-
+    
+    console.log('czh1',data)
+    const { data: result, msg: message, code } = data // 从 data 对象（也就是http应答）中提取 data、msg 和 code 属性，并将它们分别赋值给 result、message 和 code 变量
+    // console.log('czh1',result,message,code)
     // 接口数据code判断是否成功
     const isSuccess = code === ResultEnum.SUCCESS
     if (isSuccess) {
+      // console.log('czh ok ')
       return result
     }
 
@@ -82,11 +84,11 @@ const transform: AxiosTransform = {
    */
   beforeRequestHook: (config: AxiosRequestConfig, options: RequestOptions): AxiosRequestConfig => {
     const { apiUrl, formatDate, joinTimestamp = true } = options
-
+    // console.log(apiUrl,config.url)
     if (apiUrl && isString(apiUrl)) {
       config.url = `${apiUrl}${config.url}`
     }
-
+    
     const params = config.params || {}
     const data = config.data || false
 
@@ -208,10 +210,13 @@ function createAxios(opt?: Partial<CreateAxiosOptions>): SAxios {
   return new SAxios(
     merge(
       {
-        timeout: 10000,
+        timeout: 3000,
         // baseURL: import.meta.env.BASE_URL,
         headers: {
           'Content-Type': ContentTypeEnum.JSON,
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          'Expires': '0',
         },
         // 数据处理
         transform,

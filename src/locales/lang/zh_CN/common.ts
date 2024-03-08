@@ -1,5 +1,5 @@
 export default {
-  appName: '方舟管理后台',
+  appName: '移动通信网络流量预测平台',
 
   // http util
   http: {
@@ -35,6 +35,7 @@ export default {
     account: '用户名',
     passwd: '密码',
     captcha: '验证码',
+    czh:'移动通信网络流量预测平台登陆',
   },
 
   // common basic words

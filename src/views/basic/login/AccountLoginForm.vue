@@ -113,15 +113,19 @@ const handleLogin = debounce(() => {
 /**
  * get image captcha
  */
-const captchaData = ref('')
+const captchaData = ref('') //用于存储从服务器获得的验证码
 const handleGetImageCaptcha = debounce(async () => {
   try {
     const { captchaId, verifyCode } = await getImageCaptcha()
+    console.log('captchaId:', captchaId) // 打印 captchaId
+    console.log('verifyCode:', verifyCode) // 打印 verifyCode
     formData.captchaId = captchaId
     captchaData.value = verifyCode
     // 清空文本
     formData.verifyCode = ''
-  } catch (err) {}
+  } catch (err) {
+    console.log('err:', err)
+  }
 }, 500)
 
 // init

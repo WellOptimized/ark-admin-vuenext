@@ -155,9 +155,11 @@ export class SAxios {
    * axios request hook
    */
   request<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
-    let conf: CreateAxiosOptions = cloneDeep(config)
-    const transform = this.getTransform()
 
+    let conf: CreateAxiosOptions = cloneDeep(config)
+    // console.log(conf)
+    const transform = this.getTransform()
+    // console.log(transform)
     // merge options
     const { requestOptions } = this.options
     const opt: RequestOptions = Object.assign({}, requestOptions, options)
@@ -172,13 +174,15 @@ export class SAxios {
     conf.requestOptions = opt
 
     conf = this.supportFormData(conf)
-
+    // console.log(conf)
     return new Promise((resolve, reject) => {
       this.axiosInstance
         .request<any, AxiosResponse<Result>>(conf)
         .then((res: AxiosResponse<Result>) => {
           if (transformResponseHook && isFunction(transformResponseHook)) {
             try {
+              // console.log(res)
+              // console.log(opt)
               const ret = transformResponseHook(res, opt)
               resolve(ret)
             } catch (err) {
@@ -199,7 +203,7 @@ export class SAxios {
     })
   }
 
-  get<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+  get<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> { // T是类型，此处是CaptchaImgResult
     return this.request<T>({ ...config, method: 'GET' }, options)
   }
 

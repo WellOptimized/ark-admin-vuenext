@@ -15,7 +15,9 @@ import { setupI18n } from '/@/locales/setupI18n'
 import App from './App.vue'
 
 async function bootstrap() {
-  const app = createApp(App)
+  console.log('bootstrap！！！')
+
+  const app = createApp(App) //
 
   // store
   setupStore(app)
